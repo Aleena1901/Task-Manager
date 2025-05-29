@@ -1,0 +1,383 @@
+/* Custom animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Task card animations */
+.task-card {
+    transition: all 0.3s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Priority indicators */
+.priority-high {
+    @apply bg-red-100 text-red-800 border-red-300;
+}
+
+.priority-medium {
+    @apply bg-yellow-100 text-yellow-800 border-yellow-300;
+}
+
+.priority-low {
+    @apply bg-green-100 text-green-800 border-green-300;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Form animations */
+.form-control:focus {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+/* Button hover effects */
+.btn-hover-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hover-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.btn-hover-effect:hover::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #4f46e5;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Task list transitions */
+.task-enter {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.task-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.task-exit {
+    opacity: 1;
+}
+
+.task-exit-active {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Chart animations */
+.chart-container {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: chartFadeIn 0.5s ease forwards;
+}
+
+@keyframes chartFadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 640px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .task-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Toast notifications */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease;
+}
+
+.toast-success {
+    border-left: 4px solid #10B981;
+}
+
+.toast-error {
+    border-left: 4px solid #EF4444;
+}
+
+/* Modal animations */
+.modal {
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+:root {
+    /* Primary Colors */
+    --primary-color: #143A52;        /* New Primary (Dark Blue) */
+    --primary-light: #6E828A;        /* Accent Gray as Light Variant */
+    --primary-dark: #0F2C3F;         /* Slightly darker than primary-color for contrast */
+    
+    /* Background Colors */
+    --bg-primary: #E3EFF3;           /* Lightest Blue - Base Background */
+    --bg-secondary: #CDE3EB;         /* Slightly Darker Blue - Section Backgrounds */
+    --bg-tertiary: #B8D6E3;          /* Optional: Slightly darker if you want a third tone */
+
+    /* Text Colors */
+    --text-primary: #143A52;         /* Dark Blue */
+    --text-secondary: #6E828A;       /* Grayish Blue */
+    --text-tertiary: #6E828A;        /* Optional: Same as secondary for simplicity */
+
+    /* Accent Colors (unchanged or optional to tweak) */
+    --accent-success: #10B981;
+    --accent-warning: #F59E0B;
+    --accent-error: #DC2626;
+    --accent-info: #3B82F6;
+
+    /* Border Colors */
+    --border-light: #D1E4EC;         /* Adjusted to match palette */
+    --border-medium: #6E828A;
+
+    /* Shadow Colors (unchanged) */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* Navigation */
+nav {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Cards and Containers */
+.task-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Priority Colors */
+.priority-high {
+    border-left: 4px solid var(--accent-error);
+}
+
+.priority-medium {
+    border-left: 4px solid var(--accent-warning);
+}
+
+.priority-low {
+    border-left: 4px solid var(--accent-success);
+}
+
+/* Forms and Inputs */
+.form-input, .form-textarea, .form-select {
+    border: 1px solid var(--border-medium);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(20, 58, 82, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-medium);
+}
+
+/* Dashboard Stats */
+.stats-card {
+    background-color: var(--bg-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Toast Notifications */
+.toast-success {
+    background-color: var(--accent-success);
+    color: white;
+}
+
+.toast-error {
+    background-color: var(--accent-error);
+    color: white;
+}
+
+.toast-info {
+    background-color: var(--accent-info);
+    color: white;
+}
+
+/* Gradients */
+.gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Animations */
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+    padding: 4rem 0;
+}
+
+/* Task List */
+.task-list {
+    background-color: var(--bg-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.task-filter-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.task-filter-button:hover {
+    background-color: var(--primary-light);
+    color: white;
+}
+
+.task-filter-button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Charts */
+.chart-container {
+    background-color: var(--bg-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+} 
